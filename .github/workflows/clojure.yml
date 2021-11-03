@@ -1,0 +1,27 @@
+name: Clojure CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup FFmpeg
+      uses: FedericoCarboni/setup-ffmpeg@v1
+
+    - name: Install dependencies
+      run: clojure -X:deps
+      
+    - name: Create video
+      env:
+        VOICE_RSS_KEY: ${{ secrets.VOICE_RSS_KEY }}
+        X_RAPIDAPI_HOST: ${{ secrets.X_RAPIDAPI_HOST }}
+        X_RAPIDAPI_KEY: ${{ secrets.X_RAPIDAPI_KEY }}
+      run: clj -M -m news2video.main
+      

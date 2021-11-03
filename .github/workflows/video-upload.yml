@@ -1,27 +1,39 @@
-name: Clojure CI
+name: Upload video
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
+  upload:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    
+
+    - name: Prepare java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'zulu'
+        java-version: '8'
+
     - name: Setup FFmpeg
       uses: FedericoCarboni/setup-ffmpeg@v1
 
+    - name: Setup tools.cli 
+      uses: DeLaGuardo/setup-clojure@3.5
+      with:
+        cli: 1.10.1.693
+
     - name: Install dependencies
       run: clojure -X:deps
-      
+      shell: bash
+
     - name: Create video
       env:
         VOICE_RSS_KEY: ${{ secrets.VOICE_RSS_KEY }}
         X_RAPIDAPI_HOST: ${{ secrets.X_RAPIDAPI_HOST }}
         X_RAPIDAPI_KEY: ${{ secrets.X_RAPIDAPI_KEY }}
-      run: clj -M -m news2video.main
+      run: clojure -M -m news2video.main
       

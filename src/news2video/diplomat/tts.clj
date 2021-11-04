@@ -2,9 +2,9 @@
   (:require [news2video.utils :as utils]
             [clj-http.client :as client]))
 
-(def ^:private rapid-api-host (System/getenv "X_RAPIDAPI_HOST"))
-(def ^:private rapid-api-key (System/getenv "X_RAPIDAPI_KEY"))
-(def ^:private voice-rss-key (System/getenv "VOICE_RSS_KEY"))
+(def ^:private rapid-api-host (or (System/getenv "X_RAPIDAPI_HOST") "voicerss-text-to-speech.p.rapidapi.com"))
+(def ^:private rapid-api-key (or (System/getenv "X_RAPIDAPI_KEY") "7jzFJiVjmbmshjaFjg98VXBpEFZWp1lNlLSjsnLET51jBcl2PQ"))
+(def ^:private voice-rss-key (or (System/getenv "VOICE_RSS_KEY") "e16c6d545a614dc4acb8a9ac2d70ab45"))
 
 (defn ^:private transform!* [transcript]
   (let [url "https://voicerss-text-to-speech.p.rapidapi.com/"

@@ -27,7 +27,7 @@ jobs:
         cli: 1.10.3.1075
 
     - name: Install dependencies
-      run: clojure -X:deps
+      run: clojure -M:deps
       shell: bash
       
     - name: clj-watson

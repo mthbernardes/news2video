@@ -29,7 +29,10 @@ jobs:
     - name: Install dependencies
       run: clojure -X:deps
       shell: bash
-
+    - name: clj-watson
+      run: clojure -Sdeps '{:deps {io.github.clj-holmes/clj-watson {:git/sha "c1a0f533daa8407cfb7323b65074777819b95e11"}}}' -M -m clj-watson.cli scan -p deps.edn -f -s
+      shell: bash
+      
     - name: Create video
       env:
         VOICE_RSS_KEY: ${{ secrets.VOICE_RSS_KEY }}

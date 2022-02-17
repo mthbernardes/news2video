@@ -6,5 +6,5 @@
  :mvn/repos {"citec"   {:url "https://mvn.cit-ec.de/nexus/content/groups/public/"}
              "central" {:url "https://repo1.maven.org/maven2/"}
              "clojars" {:url "https://clojars.org/repo"}}
- :aliases {:clj-watson {:extra-deps {io.github.clj-holmes/clj-watson {:git/sha "a800dda3176c2466c21e15478b44aa53589fb4e8"}}
+ :aliases {:clj-watson {:extra-deps {io.github.clj-holmes/clj-watson {:git/sha "accd58f9eff713c16d70773201b2b99431d2e1c0"}}
                         :main-opts ["-m" "clj-watson.cli" "scan"]}}}

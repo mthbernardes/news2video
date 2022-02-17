@@ -33,6 +33,8 @@ jobs:
     - name: clj-watson
       run: clojure -M:clj-watson -p deps.edn -f -s
       shell: bash
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Create video
       env:
@@ -40,4 +42,3 @@ jobs:
         X_RAPIDAPI_HOST: ${{ secrets.X_RAPIDAPI_HOST }}
         X_RAPIDAPI_KEY: ${{ secrets.X_RAPIDAPI_KEY }}
       run: clojure -M -m news2video.main
-      

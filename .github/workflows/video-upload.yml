@@ -28,8 +28,8 @@ jobs:
     - name: Dependency scan
       uses: clj-holmes/clj-watson-action@aliases-support
       with:
-        clj-watson-sha: "47d3321"
-        clj-watson-tag: "v3.0.0"
+        clj-watson-sha: "ab782e0"
+        clj-watson-tag: "v3.0.1-ALPHA"
         database-strategy: github-advisory
         aliases: clojure-lsp 
         deps-edn-path: 'deps.edn'

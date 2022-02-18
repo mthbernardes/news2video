@@ -30,11 +30,16 @@ jobs:
       run: clojure -M:deps
       shell: bash
       
-    - name: clj-watson
-      run: clojure -Sdeps '{:deps {io.github.clj-holmes/clj-watson {:git/sha "accd58f9eff713c16d70773201b2b99431d2e1c0"}}}' -M -m clj-watson.cli scan -p deps.edn -s -f
-      shell: bash
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Dependency scan
+      uses: clj-holmes/clj-watson-action@aliases-support
+      with:
+        clj-watson-sha: "306ef6e"
+        clj-watson-tag: "v3.0.0-ALPHA"
+        aliases: dev,server,banana
+        deps-edn-path: 'deps.edn'
+        output-type: 'output'
+        suggest-fix: 'true'
+        fail-on-result: 'true'
       
     - name: Create video
       env:

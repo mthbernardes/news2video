@@ -29,17 +29,16 @@ jobs:
     - name: Install dependencies
       run: clojure -M:deps
       shell: bash
-      
-    - name: Dependency scan
-      uses: clj-holmes/clj-watson-action@aliases-support
+    
+    - name: Check vulnerable code
+      uses: clj-holmes/clj-holmes-action@main
       with:
-        clj-watson-sha: "306ef6e"
-        clj-watson-tag: "v3.0.0-ALPHA"
-        aliases: clojure-lsp
-        deps-edn-path: 'deps.edn'
-        output-type: 'stdout-simple'
-        suggest-fix: 'true'
+        output-type: 'stdout'
         fail-on-result: 'true'
+        
+    - name: Check vulnerable dependencies
+      run: $ clojure -Sdeps '{:deps {io.github.clj-holmes/clj-watson {:git/tag "v3.0.0" :git/sha "b93c486"}}}' -M -m clj-watson.cli scan -p deps.edn -a clojure-lsp -f -s -t github-advisory
+
       
     - name: Create video
       env:

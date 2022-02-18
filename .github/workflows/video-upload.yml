@@ -35,9 +35,9 @@ jobs:
       with:
         clj-watson-sha: "306ef6e"
         clj-watson-tag: "v3.0.0-ALPHA"
-        aliases: dev,server,banana
+        aliases: clojure-lsp
         deps-edn-path: 'deps.edn'
-        output-type: 'output'
+        output-type: 'stdout-simple'
         suggest-fix: 'true'
         fail-on-result: 'true'
       

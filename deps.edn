@@ -5,4 +5,6 @@
              remus/remus                 {:mvn/version "0.2.2"}}
  :mvn/repos {"citec"   {:url "https://mvn.cit-ec.de/nexus/content/groups/public/"}
              "central" {:url "https://repo1.maven.org/maven2/"}
-             "clojars" {:url "https://clojars.org/repo"}}}
+             "clojars" {:url "https://clojars.org/repo"}}
+ :aliases {:clojure-lsp {:replace-deps {com.github.clojure-lsp/clojure-lsp-standalone {:mvn/version "2022.02.01-20.02.32"}}
+                :main-opts ["-m" "clojure-lsp.main"]}}}

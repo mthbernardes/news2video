@@ -31,3 +31,10 @@ jobs:
         X_RAPIDAPI_HOST: ${{ secrets.X_RAPIDAPI_HOST }}
         X_RAPIDAPI_KEY: ${{ secrets.X_RAPIDAPI_KEY }}
       run: clojure -M -m news2video.main
+      
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        files: |
+          /tmp/output-video.mkv

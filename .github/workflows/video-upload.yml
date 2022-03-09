@@ -38,4 +38,4 @@ jobs:
         prerelease: false
         automatic_release_tag: latest
         files: |
-          /tmp/output-video.mkv
+          /tmp/output-video.mp4

@@ -24,7 +24,7 @@
 (defn merge! [videos]
   (let [output-video "/tmp/output-video.mkv"
         videos-to-merge (generate-videos-to-merge videos)
-        command ["ffmpeg" "-f" "concat" "-safe" "0" "-i" videos-to-merge "-c" "copy" output-video]
+        command ["ffmpeg" "-f" "concat" "-safe" "0" "-i" videos-to-merge "-vcodec" "libx264" "-crf" "28" "-preset" "faster" "-tune" "film" "-c" "copy" output-video]
         execution (apply shell/sh command)]
     (if (-> execution :exit zero?)
       output-video

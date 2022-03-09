@@ -16,39 +16,18 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '11'
-
-#    - name: Setup FFmpeg
-#      uses: FedericoCarboni/setup-ffmpeg@v1
+        
+    - name: Setup FFmpeg
+      uses: FedericoCarboni/setup-ffmpeg@v1
 
     - name: Setup tools.cli 
       uses: DeLaGuardo/setup-clojure@3.7
       with:
         cli: 1.10.3.1075
 
-    - name: Dependency scan
-      uses: clj-holmes/clj-watson-action@main
-      with:
-        clj-watson-sha: "47d3321"
-        clj-watson-tag: "v3.0.0"
-        database-strategy: github-advisory
-        aliases: clojure-lsp 
-        deps-edn-path: 'deps.edn'
-        output-type: 'stdout-simple'
-        suggest-fix: 'true'
-        fail-on-result: 'true'
+    - name: Create video
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Check vulnerable code
-      uses: clj-holmes/clj-holmes-action@main
-      continue-on-error: true
-      with:
-        output-type: 'stdout'
-        fail-on-result: 'true'
-        
-#   - name: Create video
-#     env:
-#       VOICE_RSS_KEY: ${{ secrets.VOICE_RSS_KEY }}
-#       X_RAPIDAPI_HOST: ${{ secrets.X_RAPIDAPI_HOST }}
-#       X_RAPIDAPI_KEY: ${{ secrets.X_RAPIDAPI_KEY }}
-#     run: clojure -M -m news2video.main
+        VOICE_RSS_KEY: ${{ secrets.VOICE_RSS_KEY }}
+        X_RAPIDAPI_HOST: ${{ secrets.X_RAPIDAPI_HOST }}
+        X_RAPIDAPI_KEY: ${{ secrets.X_RAPIDAPI_KEY }}
+      run: clojure -M -m news2video.main
